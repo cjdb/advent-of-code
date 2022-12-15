@@ -22,7 +22,6 @@ set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE ON)
 
 string(
    JOIN " " CMAKE_CXX_FLAGS
-   "${CMAKE_CXX_FLAGS}"
    -fvisibility=hidden
    -fstack-protector
    -fdiagnostics-color=always
@@ -30,26 +29,20 @@ string(
    -Werror
    -Wall
    -Wextra
+	 -Wattributes
    -Wcast-align
    -Wconversion
    -Wdouble-promotion
+   -Wformat=2
+   -Wno-attributes
+   -Wno-unused-command-line-argument
    -Wnon-virtual-dtor
+   -Wnull-dereference
+   -Wodr
    -Wold-style-cast
    -Woverloaded-virtual
    -Wshadow
    -Wsign-conversion
    -Wsign-promo
    -Wunused
-   -Wformat=2
-   -Wodr
-   -Wno-attributes
-   -Wnull-dereference
-   -Wno-unused-command-line-argument
-)
-
-string(
-   JOIN " " CMAKE_CXX_FLAGS_DEBUG
-   "${CMAKE_CXX_FLAGS_DEBUG}"
-   -fsanitize=address,undefined
-   -fstack-protector-strong
 )

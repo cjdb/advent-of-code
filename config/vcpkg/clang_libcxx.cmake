@@ -27,33 +27,17 @@ set(CMAKE_RANLIB "llvm-ranlib")
 
 string(
    JOIN " " CMAKE_CXX_FLAGS
-   "${CMAKE_CXX_FLAGS}"
-   -stdlib=libc++
-   -fvisibility=hidden
-   -fstack-protector
-   -fdiagnostics-color=always
-)
-
-string(
-   JOIN " " CMAKE_CXX_FLAGS_DEBUG
-   "${CMAKE_CXX_FLAGS_DEBUG}"
-   -fsanitize=address,undefined
-   -fstack-protector-strong
-)
-
-string(
-   JOIN " " CMAKE_CXX_FLAGS_RELEASE
-   "${CMAKE_CXX_FLAGS_RELEASE}"
-   -fsanitize=cfi
-   -fno-sanitize=cfi-unrelated-cast # TODO(cjdb): remove once Catch2 properly supports cfi
-   -march=x86-64-v4
-   -ffast-math
-   -flto=thin
+     -fmodules
+     -fmodules-prune-after=5
+     -stdlib=libc++
+     -rtlib=compiler-rt
+     -static-libgcc
+     -unwindlib=libunwind
+     -Werror
+     -ftemplate-backtrace-limit=0
 )
 
 string(
    JOIN " " CMAKE_EXE_LINKER_FLAGS
-   "${CMAKE_EXE_LINKER_FLAGS}"
-   -fuse-ld=lld
-   -flto=thin
+     -fuse-ld=lld
 )
